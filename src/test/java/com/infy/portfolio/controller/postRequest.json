@@ -1,0 +1,31 @@
+{
+	"projectId": 2,
+	"projectDetails": {
+		"name": "Test Project-2",
+		"description": "Test Project-2 Description",
+		"summary": "Test Project-2 Summary"
+	},
+	"dateRequested": "2018-06-22",
+	"dateRequired": "2018-06-24",
+	"contacts": [{
+		"contactId": 3,
+		"firstName": "Brindavan Krishna",
+		"lastName": "Dasika",
+		"phone": 915674536,
+		"email": "brinda@gmail.com",
+		"role": "Senior Project Manager",
+		"department": "Banking"
+	},
+	{
+		"contactId": 4,
+		"firstName": "Neymar",
+		"lastName": "Jr",
+		"phone": 915674537,
+		"email": "neymar@gmail.com",
+		"role": "Football Player",
+		"department": "Brazil"
+	}],
+	"estimates": 5,
+	"projectType": "Securities & Collateral",
+	"critical": false
+}

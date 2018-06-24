@@ -25,9 +25,7 @@ public class PortfolioValidationHandler {
 	}
 	
 	public void validateEstimate(Integer estimateValue) throws EstimateValueNotCorrectException{
-		if(isFibonaaciNumber(estimateValue)) {
-			
-		} else {
+		if(!isFibonaaciNumber(estimateValue)) {
 			String msg = "Estimate Value "+ estimateValue+ " not correct.";
 			throw new EstimateValueNotCorrectException(msg);
 		}
@@ -42,7 +40,7 @@ public class PortfolioValidationHandler {
 	
 	public boolean isFibonaaciNumber(Integer estimateValue) {
 		boolean isFibonaaci = false;		
-		if(estimateValue < 1 && estimateValue > 21)
+		if(estimateValue < 0 && estimateValue > 21)
 			return isFibonaaci;
 		List<Integer> fibList = generateFibonaaciNumber(maxFibonnaciNum);
 		if(fibList.contains(estimateValue))

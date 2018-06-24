@@ -58,7 +58,7 @@ public class PortfolioService {
 		return pf;		
 	}
 	
-	public void deletePortfolioByProjectId(Long projectId) {
+	public void deletePortfolioByProjectId(Long projectId) {		
 		repository.deleteByProjectId(projectId);
 	}
 	
@@ -66,7 +66,7 @@ public class PortfolioService {
 		valHandler.validatePortfolioDetails(pf);
 		PortfolioEO ptfolio = new PortfolioEO();
 		copyPortfolioBO2EO(ptfolio, pf);
-		ptfolio = repository.save(ptfolio);		
+		ptfolio = repository.save(ptfolio);	
 		copyPortfolioEO2BO(ptfolio, pf);
 		return pf;
 	}
@@ -131,31 +131,33 @@ public class PortfolioService {
 	}	
 	
 	public void copyPortfolioEO2BO(PortfolioEO ptfolio, Portfolio pf) {
-		ProjectDetails pDtls = new ProjectDetails();
-		pf.setProjectId(ptfolio.getProjectId());
-		pDtls.setName(ptfolio.getProjectName());
-		pDtls.setDescription(ptfolio.getProjectDescription());
-		pDtls.setSummary(ptfolio.getProjectSummary());
-		pf.setProjectDetails(pDtls);
-		pf.setDateRequested(ptfolio.getDateRequest());
-		pf.setDateRequired(ptfolio.getDateRequired());
-		
-		List<KeyContacts> contactList = new ArrayList<KeyContacts>();
-		for(ContactsEO contactEO: ptfolio.getKeyContactDetails()) {
-			KeyContacts kCtcts = new KeyContacts();
-			kCtcts.setContactId(contactEO.getContactId());
-			kCtcts.setFirstName(contactEO.getFirstName());
-			kCtcts.setLastName(contactEO.getLastName());
-			kCtcts.setPhone(contactEO.getPhoneNumber());
-			kCtcts.setEmail(contactEO.getEmailId());
-			kCtcts.setRole(contactEO.getRole());
-			kCtcts.setDepartment(contactEO.getDepartment());			
-			contactList.add(kCtcts);
-		}		
-		pf.setContacts(contactList);		
-		pf.setEstimates(ptfolio.getEstimates());
-		pf.setProjectType(ptfolio.getProjectType());
-		pf.setCritical((ptfolio.getCritical()!=null && ptfolio.getCritical().equals("Y"))?true:false);
+		if(ptfolio!=null) {
+			ProjectDetails pDtls = new ProjectDetails();
+			pf.setProjectId(ptfolio.getProjectId());
+			pDtls.setName(ptfolio.getProjectName());
+			pDtls.setDescription(ptfolio.getProjectDescription());
+			pDtls.setSummary(ptfolio.getProjectSummary());
+			pf.setProjectDetails(pDtls);
+			pf.setDateRequested(ptfolio.getDateRequest());
+			pf.setDateRequired(ptfolio.getDateRequired());
+			
+			List<KeyContacts> contactList = new ArrayList<KeyContacts>();
+			for(ContactsEO contactEO: ptfolio.getKeyContactDetails()) {
+				KeyContacts kCtcts = new KeyContacts();
+				kCtcts.setContactId(contactEO.getContactId());
+				kCtcts.setFirstName(contactEO.getFirstName());
+				kCtcts.setLastName(contactEO.getLastName());
+				kCtcts.setPhone(contactEO.getPhoneNumber());
+				kCtcts.setEmail(contactEO.getEmailId());
+				kCtcts.setRole(contactEO.getRole());
+				kCtcts.setDepartment(contactEO.getDepartment());			
+				contactList.add(kCtcts);
+			}		
+			pf.setContacts(contactList);		
+			pf.setEstimates(ptfolio.getEstimates());
+			pf.setProjectType(ptfolio.getProjectType());
+			pf.setCritical((ptfolio.getCritical()!=null && ptfolio.getCritical().equals("Y"))?true:false);
+		}
 	}
 	
 	public void copyPortfolioBO2EO(PortfolioEO ptfolio, Portfolio pf) {
